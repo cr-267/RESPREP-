@@ -1,0 +1,220 @@
+/**
+ * =====================================
+ *         UI DESIGN SYSTEM
+ * =====================================
+ * 
+ * Project: ResuPrep - Resume-Based MCQ Generator
+ * Type: Educational Web Application
+ * 
+ * DESIGN PHILOSOPHY
+ * -----------------
+ * Core Principle: Professional sophistication meets approachable learning
+ * Design Style: Modern Professional with vibrant accents
+ * Emotion Goal: Confidence, clarity, and engagement in self-assessment
+ * 
+ * COLOR SYSTEM (HSL FORMAT)
+ * -------------
+ * Primary: 220 100% 50% - Professional blue for trust and focus
+ * Secondary: 260 100% 65% - Sophisticated purple for premium feel
+ * Success: 142 76% 36% - Fresh green for achievements
+ * Warning: 32 95% 44% - Warm amber for attention
+ * Destructive: 0 84% 60% - Balanced red for errors
+ * Muted: 220 14% 96% - Soft background for content areas
+ * 
+ * TYPOGRAPHY
+ * ----------
+ * Display: Inter font family for clean, modern readability
+ * Body: Optimized for extended reading during quiz sessions
+ * 
+ * INTERACTIONS
+ * ------------
+ * Transitions: 250ms cubic-bezier for natural feel
+ * States: Complete coverage with subtle feedback
+ * Micro-animations: Enhance without distraction
+ * ====================================
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 15% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 20%;
+    --primary: 220 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 260 100% 65%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 8% 46%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 220 15% 20%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 220 100% 50%;
+    --radius: 0.75rem;
+    --success: 142 76% 36%;
+    --warning: 32 95% 44%;
+  }
+
+  .dark {
+    --background: 220 15% 8%;
+    --foreground: 220 14% 95%;
+    --card: 220 15% 10%;
+    --card-foreground: 220 14% 95%;
+    --popover: 220 15% 10%;
+    --popover-foreground: 220 14% 95%;
+    --primary: 220 100% 60%;
+    --primary-foreground: 220 15% 8%;
+    --secondary: 260 100% 70%;
+    --secondary-foreground: 220 15% 8%;
+    --muted: 220 15% 15%;
+    --muted-foreground: 220 8% 65%;
+    --accent: 220 15% 15%;
+    --accent-foreground: 220 14% 95%;
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 220 100% 60%;
+    --success: 142 76% 45%;
+    --warning: 32 95% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'cv02','cv03','cv04','cv11';
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-3xl lg:text-4xl;
+  }
+
+  h2 {
+    @apply text-2xl lg:text-3xl;
+  }
+
+  h3 {
+    @apply text-xl lg:text-2xl;
+  }
+}
+
+@layer components {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+  }
+
+  .glass-effect {
+    @apply bg-white/10 backdrop-blur-sm border border-white/20;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .btn-gradient {
+    @apply bg-gradient-to-r from-primary to-secondary text-white font-medium;
+    @apply hover:shadow-lg hover:scale-105 transition-all duration-300;
+  }
+
+  .progress-ring {
+    transition: stroke-dashoffset 0.5s ease-in-out;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/30 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/50;
+}
+
+/* File upload area */
+.upload-area {
+  @apply border-2 border-dashed border-muted-foreground/30 rounded-xl;
+  @apply hover:border-primary/50 transition-colors duration-300;
+  @apply bg-gradient-to-br from-muted/30 to-muted/60;
+}
+
+.upload-area.dragover {
+  @apply border-primary bg-primary/5 scale-105;
+}
+
+/* Quiz option animations */
+.quiz-option {
+  @apply transition-all duration-200 hover:scale-105;
+}
+
+.quiz-option.selected {
+  @apply ring-2 ring-primary bg-primary/5;
+}
+
+.quiz-option.correct {
+  @apply ring-2 ring-green-500 bg-green-50;
+}
+
+.quiz-option.incorrect {
+  @apply ring-2 ring-red-500 bg-red-50;
+}
+
+/* Results animations */
+.score-circle {
+  @apply relative overflow-hidden rounded-full;
+}
+
+.score-fill {
+  transition: transform 1s ease-out;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .glass-effect {
+    @apply bg-white/5 backdrop-blur-sm;
+  }
+}
